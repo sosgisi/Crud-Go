@@ -1,0 +1,36 @@
+package components
+
+import "go-crud-1/models"
+
+templ UserList(users []models.User) {
+	@Index() {
+		<div
+			id="user-list"
+			class="flex flex-col justify-center w-1/2 m-auto my-20"
+		>
+			<h1 class="mb-10 text-center font-bold text-2xl">USER LISTS</h1>
+			<button
+				hx-get="/post"
+				hx-target="#user-list"
+				hx-swap="outerHTML"
+				hx-trigger="click"
+				hx-push-url="/post"
+				class="bg-indigo-700 w-36 px-3 py-2 my-5 font-bold text-white hover:bg-indigo-500 rounded-2xl"
+			>Add User</button>
+			<table class="text-center">
+				<thead>
+					<tr class="border-b-2 border-black">
+						<th>No</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Gender</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@Users(users)
+				</tbody>
+			</table>
+		</div>
+	}
+}
